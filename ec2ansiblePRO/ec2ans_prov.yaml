@@ -1,0 +1,28 @@
+---
+  # Talk to all hosts just so we can learn about them...
+- name: Create a sandbox instance
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+#    - vars/dev-environment.yml
+    - ec2secret/aws-creds.yml
+  vars:
+    keypair: satya_key_pair
+    instance_type: t2.micro
+    image: ami-1e749f67
+    region: eu-west-1
+  tasks:
+    - name: Launch instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: default
+         count: 2:
+         aws_access_key: "{{ ec2_access_key }}" 
+         aws_secret_key: "{{ ec2_secret_key }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+      register: ec2
+    - name: Print all ec2 variables
+      debug: var=ec2

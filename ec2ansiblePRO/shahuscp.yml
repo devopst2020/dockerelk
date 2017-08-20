@@ -1,0 +1,13 @@
+--- 
+- hosts: webservers
+  sudo: yes
+  sudo_user: ubuntu
+
+  tasks:
+# adding scp and unzip 
+   
+  #- name: Copy file from machine1 to machine2
+   # shell: scp -i "/home/vagrant/ec2ansiblePRO/satya_key_pair.pem"  /home/vagrant/ec2ansiblePRO/adddockerfilesELK/elk-docker/elkdockerfile.zip   ubuntu@ec2-52-208-152-239.eu-west-1.compute.amazonaws.com:/home/ubuntu
+
+  - name: unzip  content
+    shell: unzip  /home/ubuntu/elkdockerfile.zip

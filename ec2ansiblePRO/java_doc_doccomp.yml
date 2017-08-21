@@ -1,11 +1,11 @@
 --- 
-- 
-  hosts: all 
-  remote_user: ubutu
-  connection: ssh
+#- 
+#  hosts: all 
+#  remote_user: ubutu
+#  connection: ssh
 #  ec2_key: 
 #   name: new_keypair 
-  tasks: 
+#  tasks: 
     - 
       apt: "name=software-properties-common state=latest"
       become: true
@@ -49,7 +49,9 @@
     - 
       get_url: 
         dest: /usr/local/bin/docker-compose
-        mode: "644"
-        url: "https://github.com/docker/compose/releases/download/1.14.0/docker-compose-"
+        mode: "755"
+#        url: "https://github.com/docker/compose/releases/download/1.14.0/docker-compose-"
+        url: "https://github.com/docker/compose/releases/download/1.15.0/docker-compose-Linux-x86_64"
+
       name: "install docker-compose"
 

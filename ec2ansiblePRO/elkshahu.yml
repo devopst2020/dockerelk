@@ -8,13 +8,13 @@
    
   - name: Copy file from machine1 to machine2
     #shell: scp -i "/home/vagrant/ec2ansiblePRO/mykeypair.pem"  /home/vagrant/ec2ansiblePRO/adddockerfilesELK/elk-docker/elkdockerfile.zip   ubuntu@34.251.177.202:/home/ubuntu/
-    copy: src=/home/vagrant/ec2ansiblePRO/mywp.zip dest=/tmp mode=0755
+    copy: src=/home/vagrant/ec2ansiblePRO/elk-docker.zip dest=/tmp mode=0755
     remote_user: ubuntu
     #register: dock
     #ignore_errors: True
   - name: install dependencies
     apt: name=unzip state=present update_cache=yes
   - name: unzip  content
-    shell: unzip  /tmp/mywp.zip
+    shell: unzip  /tmp/elk-docker.zip
   - name: docker-compose run
     shell: docker-compose up -d
